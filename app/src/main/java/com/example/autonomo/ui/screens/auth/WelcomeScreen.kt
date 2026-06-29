@@ -1,19 +1,18 @@
 package com.example.autonomo.ui.screens.auth
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ConnectWithoutContact
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.autonomo.R
 import com.example.autonomo.ui.components.PrimaryButton
 import com.example.autonomo.ui.components.SecondaryButton
 import com.example.autonomo.ui.theme.*
@@ -26,11 +25,7 @@ fun WelcomeScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    colors = listOf(Primary900, Primary700, Primary500)
-                )
-            )
+            .background(Primary900)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -40,11 +35,20 @@ fun WelcomeScreen(
         ) {
             Spacer(Modifier.weight(1f))
 
-            Image(
-                painter = painterResource(id = R.drawable.icon),
-                contentDescription = "ServiConnect",
-                modifier = Modifier.size(120.dp)
-            )
+            // Manual composition is much faster than loading a very complex VectorDrawable
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .size(96.dp)
+                    .background(White.copy(alpha = 0.15f), RoundedCornerShape(28.dp))
+            ) {
+                Icon(
+                    imageVector        = Icons.Rounded.ConnectWithoutContact,
+                    contentDescription = "ServiConnect",
+                    tint               = White,
+                    modifier           = Modifier.size(56.dp)
+                )
+            }
 
             Spacer(Modifier.height(24.dp))
 
@@ -84,7 +88,7 @@ fun WelcomeScreen(
                     Text(
                         text      = "Accede a tu cuenta o crea una nueva",
                         style     = MaterialTheme.typography.bodyMedium,
-                        color     = Neutral50, // Ajustado para visibilidad según tu cambio previo en icon.xml
+                        color     = Neutral500,
                         textAlign = TextAlign.Center
                     )
                     Spacer(Modifier.height(24.dp))
